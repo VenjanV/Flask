@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% block title %} Welcome to FlaskBlog {% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename= 'image/favicon.ico') }}">
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+</head>
+<body>
+
+    <main>
+        <section class="quiz">
+            <div class="heading">
+                <p class="title">Quiz</p>
+                <p class="subtitle">JavaScript Knowledge</p>
+            </div>
+
+            <div class="result hide">
+                <p></p>
+                <p class="reload">
+                    <button onclick=location.reload()>Try Again?</button>
+                </p>
+            </div>
+
+            <form class="quiz-form">
+                <div class="question">
+                    <p>1. What is the primary objective of a business in a free market economy?</p>
+                    <div class="option">
+                        <input type="radio" name="q1" value="A" checked>
+                        <label for="">To maximize employee satisfaction</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q1" value="B">
+                        <label for="">To increase market share</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q1" value="C">
+                        <label for="">To maximize profits</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q1" value="D">
+                        <label for="">To contribute to community development</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>2. Which of the following is a key characteristic of a limited liability company (LLC)?</p>
+                    <div class="option">
+                        <input type="radio" name="q2" value="A" checked>
+                        <label for="">Unlimited liability for owners</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q2" value="B">
+                        <label for="">Profits are taxed at the corporate level</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q2" value="C">
+                        <label for="">Limited liability for owners</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q2" value="D">
+                        <label for="">Ownership is easily transferable through the stock market</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>3. Which management function involves setting objectives and determining a course of action for achieving those objectives?</p>
+                    <div class="option">
+                        <input type="radio" name="q3" value="A" checked>
+                        <label for="">Organizing</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q3" value="B">
+                        <label for="">Leading</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q3" value="C">
+                        <label for="">Controlling</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q3" value="D">
+                        <label for="">Planning</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>4. In marketing, the “Four Ps” refer to product, price, place, and what?</p>
+                    <div class="option">
+                        <input type="radio" name="q4" value="A" checked>
+                        <label for="">Promotion</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q4" value="B">
+                        <label for="">People</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q4" value="C">
+                        <label for="">Profit</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q4" value="D">
+                        <label for="">Planning</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>5. Which financial statement provides a snapshot of a company’s financial position at a specific point in time?</p>
+                    <div class="option">
+                        <input type="radio" name="q5" value="A" checked>
+                        <label for="">Income Statement</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q5" value="B">
+                        <label for=""> Balance Sheet</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q5" value="C">
+                        <label for="">Cash Flow Statement</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q5" value="D">
+                        <label for="">Statement of Retained Earnings</label>
+                    </div>
+                </div>
+                <div class="submit">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </section>
+    </main>
+    <script src="{{ url_for('static', filename= 'js/index.js') }}"></script>
+    
+</body>
+</html>
+
+<div class="create">
+    <a href="{{ url_for('create') }}">Create Database</a>
+</div>
+
+{% for post in posts %}
+        <a href="{{ url_for('post', post_id=post['id']) }}">
+            <h2>{{ post['title'] }}</h2>
+        </a>
+        <span class="badge badge-primary">{{ post['created'] }}</span>
+        <a href="{{ url_for('edit', post_id=post['id']) }}">
+            <span class="badge badge-warning">Edit</span>
+        </a>
+        <hr>
+    {% endfor %}
+
+{% endblock %} 
